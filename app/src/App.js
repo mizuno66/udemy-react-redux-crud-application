@@ -1,23 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class App extends Component {
-  render() {
-    // ReactではReturnする場合は、一つのタグでなくてはならない
-    // return (
-    //   <div>
-    //     <label htmlFor="bar">bar</label>
-    //     <input type="text" onClick={() => {console.log("clicked")}} />
-    //   </div>
-    // )
+// クラスComponent
+// class App extends Component {
+//   render() {
+//     return (
+//       <React.Fragment>
+//         <label htmlFor="bar">bar</label>
+//         <input type="text" onClick={() => {console.log("clicked")}} />
+//       </React.Fragment>
+//     )
+//   }
+// }
 
-    // divなしで書ける
-    return (
-      <React.Fragment>
-        <label htmlFor="bar">bar</label>
-        <input type="text" onClick={() => {console.log("clicked")}} />
-      </React.Fragment>
-    )
-  }
+// 関数Component
+const App = () => {
+  return (
+    <div>
+      <Cat />
+    </div>
+  )
+}
+
+const Cat = () => {
+  return <div>Meow!</div>
 }
 
 export default App;
