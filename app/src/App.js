@@ -1,46 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+// Prop ・・・ 変更不可（イミュータブル）
+// State ・・・ 変更可（ミュータブル）クラスコンポーネントで使用できる
 
-const App = () => {
-  const profiles = [
-    {
-      name: "Taro",
-      age: 10,
-    },
-    {
-      name: "Hanako",
-      age: 5,
-    },
-    {
-      name: "NoName",
-      age: 3,
-    },
-  ]
-  // mapを利用して表示
-  return (
-    <div>
-      {
-        profiles.map( (profiles, index) => {
-          return(
-            // KeyにIndexを渡す（仮想DOM内で一意に特定して再描画するため）
-            <User name={profiles.name} age={profiles.age} key={index} />
-          )
-        })
-      }
-    </div>
-  )
-}
+const App = () => (<Counter></Counter>)
 
-const User = (props) => {
-  return (
-    <div>Hi!, I am {props.name}, and {props.age} years old!</div>
-  )
-}
+class Counter extends Component {
+  // コンストラクタ（初期化時に実行される）
+  constructor(props){
+    // Component側の初期化処理を実行
+    super(props)
 
-// prop-types定義（型チェック）
-User.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired,
+    console.log(this.state)
+    // stateの初期化
+    this.state = { count: 0 }
+  }
+
+  handlePlusButton = () => {
+    // setStateを使用することで自動でバインドされている仮想DOMが更新されて再描画される
+    this.setState({ count: this.state.count + 1 })
+  }
+  handleMinusButton = () => {
+    this.setState({ count: this.state.count - 1 })
+  }
+
+  render(){
+    return (
+      <React.Fragment>
+        <div>count: { this.state.count }</div>
+        <button onClick={ this.handlePlusButton }>+1</button>
+        <button onClick={ this.handleMinusButton }>-1</button>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;
