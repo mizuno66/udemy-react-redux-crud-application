@@ -1,28 +1,43 @@
 import React from 'react';
 
-// クラスComponent
-// class App extends Component {
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <label htmlFor="bar">bar</label>
-//         <input type="text" onClick={() => {console.log("clicked")}} />
-//       </React.Fragment>
-//     )
-//   }
-// }
-
-// 関数Component
 const App = () => {
+  const profiles = [
+    {
+      name: "Taro",
+      age: 10,
+    },
+    {
+      name: "Hanako",
+      age: 5,
+    },
+    {
+      name: "NoName",
+    },
+  ]
+  // mapを利用して表示
   return (
     <div>
-      <Cat />
+      {
+        profiles.map( (profiles, index) => {
+          return(
+            // KeyにIndexを渡す（仮想DOM内で一意に特定して再描画するため）
+            <User name={profiles.name} age={profiles.age} key={index} />
+          )
+        })
+      }
     </div>
   )
 }
 
-const Cat = () => {
-  return <div>Meow!</div>
+const User = (props) => {
+  return (
+    <div>Hi!, I am {props.name}, and {props.age} years old!</div>
+  )
+}
+
+// デフォルト値を定義
+User.defaultProps = {
+  age: 1
 }
 
 export default App;
