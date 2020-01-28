@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const App = () => {
   const profiles = [
@@ -12,6 +13,7 @@ const App = () => {
     },
     {
       name: "NoName",
+      age: 3,
     },
   ]
   // mapを利用して表示
@@ -35,9 +37,10 @@ const User = (props) => {
   )
 }
 
-// デフォルト値を定義
-User.defaultProps = {
-  age: 1
+// prop-types定義（型チェック）
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired,
 }
 
 export default App;
