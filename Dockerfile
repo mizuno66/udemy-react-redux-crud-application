@@ -18,3 +18,6 @@ RUN mkdir udemy-react-redux-crud-application/app/
 WORKDIR udemy-react-redux-crud-application/app/
 
 COPY app/package.json .
+COPY app/yarn.lock .
+
+RUN yarn install
