@@ -1,7 +1,7 @@
 {
     "name": "React",
     "dockerComposeFile": [
-      "docker-compose.yml"
+      "../docker-compose.yml"
     ],
     "service": "web",
     "workspaceFolder": "/home/node/udemy-react-redux-crud-application",

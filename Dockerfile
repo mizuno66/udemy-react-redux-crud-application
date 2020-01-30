@@ -11,12 +11,10 @@ RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
         && chown -R $USER_UID:$USER_GID /home/$USERNAME; \
     fi
 
-RUN apt install -y git
-
 WORKDIR /home/node
 
 RUN mkdir udemy-react-redux-crud-application
-WORKDIR udemy-react-redux-crud-application
+RUN mkdir udemy-react-redux-crud-application/app/
+WORKDIR udemy-react-redux-crud-application/app/
 
-RUN npm install yarn
-RUN yarn global add create-react-app
+COPY app/package.json .
