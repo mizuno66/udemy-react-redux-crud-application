@@ -1,37 +1,31 @@
 import React, {Component} from 'react';
-// Prop ・・・ 変更不可（イミュータブル）
-// State ・・・ 変更可（ミュータブル）クラスコンポーネントで使用できる
+import { connect } from 'react-redux';
 
-const App = () => (<Counter></Counter>)
+import { increment, decrement } from '../actions'
 
-class Counter extends Component {
-  // コンストラクタ（初期化時に実行される）
-  constructor(props){
-    // Component側の初期化処理を実行
-    super(props)
-
-    console.log(this.state)
-    // stateの初期化
-    this.state = { count: 0 }
-  }
-
-  handlePlusButton = () => {
-    // setStateを使用することで自動でバインドされている仮想DOMが更新されて再描画される
-    this.setState({ count: this.state.count + 1 })
-  }
-  handleMinusButton = () => {
-    this.setState({ count: this.state.count - 1 })
-  }
-
+class App extends Component {
   render(){
+    const props = this.props;
+
     return (
       <React.Fragment>
-        <div>count: { this.state.count }</div>
-        <button onClick={ this.handlePlusButton }>+1</button>
-        <button onClick={ this.handleMinusButton }>-1</button>
+        <div>value: { props.value }</div>
+        <button onClick={ props.increment }>+1</button>
+        <button onClick={ props.decrement }>-1</button>
       </React.Fragment>
     )
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  value: state.count.value
+})
+// const mapDispatchToProps = dispatch => ({
+//   increment: () => dispatch(increment()),
+//   decrement: () => dispatch(decrement()),
+// })
+
+// 下記の書き方でも可
+const mapDispatchToProps = ({ increment, decrement })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
