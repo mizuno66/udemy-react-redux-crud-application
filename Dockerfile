@@ -17,6 +17,8 @@ RUN mkdir udemy-react-redux-crud-application
 RUN mkdir udemy-react-redux-crud-application/app/
 WORKDIR udemy-react-redux-crud-application/app/
 
+ENV NODE_ENV development
+
 COPY app/package.json .
 COPY app/yarn.lock .
 
