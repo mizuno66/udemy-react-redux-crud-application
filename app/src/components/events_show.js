@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
 
 import { getEvent, deleteEvent, putEvent } from '../actions'
 
@@ -23,8 +25,14 @@ class EventsShow extends Component {
 
     return (
       <div>
-        <input {...input} placeholder={label} type={type}/>
-        {touched && error && <span>{ error }</span>}
+        <TextField
+          hintText={label}
+          floatingLabelText={label}
+          type={type}
+          errorText={touched && error}
+          {...input}
+          fullWidth={true}
+        />
       </div>
     )
   }
@@ -46,6 +54,9 @@ class EventsShow extends Component {
     // invalid : validationの状態を示す
     const { handleSubmit, pristine, submitting, invalid } = this.props
 
+    const style = {
+      margin: 12
+    }
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
         <div>
@@ -56,9 +67,9 @@ class EventsShow extends Component {
         </div>
 
         <div>
-          <input type="submit" value="Submit" disabled={ pristine || submitting || invalid } />
-          <Link to="/">Cancel</Link>
-          <Link to="/" onClick={this.onDeleteClick}>Delete</Link>
+          <RaisedButton label="Submit" type="submit" style={style} disabled={ pristine || submitting || invalid } />
+          <RaisedButton label="Cancel" style={style} containerElement={<Link to="/" />} />
+          <RaisedButton label="Delete" style={style} onClick={this.onDeleteClick} />
         </div>
       </form>
     )
