@@ -1,0 +1,15 @@
+{
+    "name": "React",
+    "dockerComposeFile": [
+      "../docker-compose.yml"
+    ],
+    "service": "web",
+    "workspaceFolder": "/home/node/udemy-react-redux-crud-application",
+    "settings": {
+      "editor.tabSize": 4,
+      "files.insertFinalNewline": true,
+      "files.trimFinalNewlines": true,
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "shutdownAction": "none"
+}

@@ -1,0 +1,9 @@
+version: '3'
+services: 
+    web:
+        build: .
+        volumes: 
+            - .:/home/node/udemy-react-redux-crud-application
+        ports: 
+            - 3000:3000
+        command: sleep infinity
